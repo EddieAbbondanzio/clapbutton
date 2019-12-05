@@ -1,0 +1,105 @@
+:root {
+  --clap-color: rgba(158, 158, 158, 1);
+  --clap-background: rgba(245, 245, 245, 1);
+}
+
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+
+  100% {
+    box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes grow-and-shrink {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.grow-and-shrink {
+  animation: grow-and-shrink 0.2s forwards;
+}
+
+.grow {
+  animation: grow 0.1s forwards;
+}
+
+.shrink {
+  animation: grow 0.1s reverse;
+}
+
+.clap-button-red {
+  --clap-color: rgba(244, 67, 54, 1);
+  --clap-background: rgba(255, 205, 210, 1);
+}
+
+.clap-button-green {
+  --clap-color: rgba(76, 175, 80, 1);
+  --clap-background: rgba(200, 230, 201, 1);
+}
+
+.clap-button-blue {
+  --clap-color: rgba(33, 150, 243, 1);
+  --clap-background: rgba(187, 222, 251, 1);
+}
+
+.clap-button-clicked {
+  background-color: var(--clap-background) !important;
+}
+
+.clap-button {
+  background-color: transparent;
+  height: 60px;
+  width: 60px;
+  border: 1px solid var(--clap-color);
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.clap-button svg {
+  height: 34px;
+  width: 34px;
+  flex-shrink: 0;
+}
+
+.clap-button:active {
+  border: 1px solid var(--clap-color);
+}
+
+.shadow-pulse {
+  animation: shadow-pulse 1.2s infinite;
+}
+
+.clap-button:before {
+  font-size: 1em;
+  content: attr(data-clap-count);
+  position: absolute;
+  top: -35%;
+  color: var(--clap-color);
+}

@@ -1,0 +1,27 @@
+{
+  "name": "clapbutton",
+  "version": "1.0.0",
+  "description": "A micro interaction clap button for readers to give feedback to authors",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "start": "webpack-dev-server --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EddieAbbondanzio/clapbutton.com.git"
+  },
+  "author": "Ed Abbondanzio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EddieAbbondanzio/clapbutton.com/issues"
+  },
+  "homepage": "https://github.com/EddieAbbondanzio/clapbutton.com#readme",
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.9.0"
+  }
+}
