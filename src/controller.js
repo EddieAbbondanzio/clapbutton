@@ -15,8 +15,9 @@ export class Controller {
       await view.growAndShrink();
 
       this._model.clapCount++;
-      view.showCount(this._model.clapCount);
       view.markAsClicked();
+      await view.showClickStreakCount(1);
+      view.showCount(this._model.clapCount);
     };
 
     view.onHold = () => console.log("hold");

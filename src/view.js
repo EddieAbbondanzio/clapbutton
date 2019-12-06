@@ -55,15 +55,25 @@ export class View {
     this._stopAnimation(this._button, "shadow-pulse");
   }
 
+  async showClickStreakCount(streakCount) {
+    const streakBubble = document.createElement("div");
+    streakBubble.innerHTML = `<span>+${streakCount}</span>`;
+    streakBubble.className = "streak-bubble";
+
+    this._button.appendChild(streakBubble);
+    await this._temporaryAnimation(streakBubble, "first-pop-up-and-fade", 1000);
+    this._button.removeChild(streakBubble);
+  }
+
   async growAndShrink() {
     await this._temporaryAnimation(this._button, "grow-and-shrink", 200);
   }
 
-  showCount(count) {
+  async showCount(count) {
     this._button.setAttribute("data-clap-count", count);
   }
 
-  hideCount() {
+  async hideCount() {
     this._button.removeAttribute("data-clap-count");
   }
 

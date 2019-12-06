@@ -1,8 +1,3 @@
-:root {
-  --clap-color: rgba(158, 158, 158, 1);
-  --clap-background: rgba(245, 245, 245, 1);
-}
-
 @keyframes shadow-pulse {
   0% {
     box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
@@ -36,6 +31,40 @@
   }
 }
 
+@keyframes first-pop-up-and-fade {
+  0% {
+    transform: translateY(-60px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-80px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+@keyframes pop-up-and-fade {
+  0% {
+    transform: translateY(-80px) scale(0.9);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-80px) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+.shadow-pulse {
+  animation: shadow-pulse 1.2s infinite;
+}
+
 .grow-and-shrink {
   animation: grow-and-shrink 0.2s forwards;
 }
@@ -46,6 +75,19 @@
 
 .shrink {
   animation: grow 0.1s reverse;
+}
+
+.first-pop-up-and-fade {
+  animation: first-pop-up-and-fade 1s forwards;
+}
+
+.pop-up-and-fade {
+  animation: pop-up-and-fade 1s forwards;
+}
+
+:root {
+  --clap-color: rgba(158, 158, 158, 1);
+  --clap-background: rgba(245, 245, 245, 1);
 }
 
 .clap-button-red {
@@ -92,14 +134,25 @@
   border: 1px solid var(--clap-color);
 }
 
-.shadow-pulse {
-  animation: shadow-pulse 1.2s infinite;
-}
-
 .clap-button:before {
   font-size: 1em;
   content: attr(data-clap-count);
   position: absolute;
-  top: -35%;
+  top: -28px;
+  color: var(--clap-color);
+}
+
+.streak-bubble {
+  position: absolute;
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+  background-color: var(--clap-background);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.streak-bubble span {
   color: var(--clap-color);
 }
