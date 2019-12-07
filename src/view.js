@@ -20,6 +20,7 @@ export class View {
     );
 
     button.addEventListener("mousedown", e => {
+      // Don't accept a click if it's not the BUTTON
       if (e.target != this._button) {
         if (
           e.target.parentNode != this._button ||
@@ -119,7 +120,14 @@ export class View {
   }
 
   async showCount(count) {
-    this._button.setAttribute("data-clap-count", count);
+    let formattedCount =
+      Math.abs(count) > 999
+        ? Math.sign(count) * (Math.abs(count) / 1000).toFixed(1) + "k"
+        : Math.sign(count) * Math.abs(count);
+
+    this._button.setAttribute("data-clap-count", formattedCount);
+
+    this._button.title = `${count.toLocaleString()} claps`;
   }
 
   async hideCount() {
