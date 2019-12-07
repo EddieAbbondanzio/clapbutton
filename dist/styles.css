@@ -21,7 +21,6 @@
   50% {
     height: 72px;
     width: 72px;
-    /* transform: scale(1.1); */
   }
 }
 
@@ -146,6 +145,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: default;
 }
 
 .streak-bubble span {

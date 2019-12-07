@@ -19,7 +19,16 @@ export class View {
       this._notifyListeners("onLeave")
     );
 
-    button.addEventListener("mousedown", () => {
+    button.addEventListener("mousedown", e => {
+      if (e.target != this._button) {
+        if (
+          e.target.parentNode != this._button ||
+          e.target == this._streakBubble
+        ) {
+          return;
+        }
+      }
+
       isDown = true;
       isHold = false;
 
