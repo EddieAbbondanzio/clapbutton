@@ -13,7 +13,7 @@ export class Controller {
     };
 
     view.onClick = async () => {
-      //   await view.growAndShrink();
+      await view.growAndShrink();
 
       this._model.clapCount++;
       this._model.streakCount++;
