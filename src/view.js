@@ -3,6 +3,7 @@ import { sleep } from "./sleep";
 export class View {
   constructor(button) {
     this._button = button;
+    this._clickId = 0;
 
     const HOLD_CLICK_DELAY = 250;
 
@@ -55,14 +56,53 @@ export class View {
     this._stopAnimation(this._button, "shadow-pulse");
   }
 
-  async showClickStreakCount(streakCount) {
-    const streakBubble = document.createElement("div");
-    streakBubble.innerHTML = `<span>+${streakCount}</span>`;
-    streakBubble.className = "streak-bubble";
+  async showClickStreakCount(model) {
+    // Hide pulsing shadow, and the total click count
+    this.hidePulse();
+    this.hideCount();
 
-    this._button.appendChild(streakBubble);
-    await this._temporaryAnimation(streakBubble, "first-pop-up-and-fade", 1000);
-    this._button.removeChild(streakBubble);
+    let streakBubble = null;
+
+    // Get the cached bubble, or create a new one.
+    if (this._streakBubble == null) {
+      streakBubble = document.createElement("div");
+      streakBubble.className = "streak-bubble";
+      this._button.appendChild(streakBubble);
+
+      this._streakBubble = streakBubble;
+    } else {
+      streakBubble = this._streakBubble;
+    }
+
+    streakBubble.innerHTML = `<span>+${model.streakCount}</span>`;
+    let clickId = ++this._clickId;
+
+    if (model.streakCount == 1) {
+      this._triggerAnimation(streakBubble, "first-pop-up-and-fade");
+
+      await sleep(1000);
+
+      if (clickId == this._clickId) {
+        this._stopAnimation(streakBubble, "first-pop-up-and-fade");
+        this.showCount(model.clapCount);
+      }
+    } else {
+      this._stopAnimation(streakBubble, "first-pop-up-and-fade");
+      this._triggerAnimation(streakBubble, "pop-up-and-fade");
+
+      await sleep(1000);
+
+      if (clickId == this._clickId) {
+        this._stopAnimation(streakBubble, "pop-up-and-fade");
+        this.showCount(model.clapCount);
+      }
+    }
+
+    // Only remove the bubble if this action was the last to click it.
+    if (clickId == this._clickId) {
+      this._button.removeChild(streakBubble);
+      this._streakBubble = null;
+    }
   }
 
   async growAndShrink() {
@@ -93,16 +133,16 @@ export class View {
     element.classList.add(className);
   }
 
+  _stopAnimation(element, className) {
+    element.classList.remove(className);
+  }
+
   async _temporaryAnimation(element, className, milliseconds) {
     element.classList.remove(className);
     void element.offsetWidth;
     element.classList.add(className);
 
     await sleep(milliseconds);
-    element.classList.remove(className);
-  }
-
-  _stopAnimation(element, className) {
     element.classList.remove(className);
   }
 }

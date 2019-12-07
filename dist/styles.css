@@ -48,11 +48,12 @@
 
 @keyframes pop-up-and-fade {
   0% {
-    transform: translateY(-80px) scale(0.9);
+    /* was 0.9 */
+    transform: translateY(-80px) scale(1);
     opacity: 1;
   }
   50% {
-    transform: translateY(-80px) scale(1);
+    transform: translateY(-80px) scale(1.2);
     opacity: 1;
   }
   100% {

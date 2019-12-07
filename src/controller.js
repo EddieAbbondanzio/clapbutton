@@ -7,17 +7,17 @@ export class Controller {
       view.showPulse();
     };
 
-    view.onLeave = () => view.hidePulse();
+    view.onLeave = () => {
+      view.hidePulse();
+      this._model.streakCount = 0;
+    };
 
     view.onClick = async () => {
-      view.hideCount();
-      view.hidePulse();
-      await view.growAndShrink();
+      //   await view.growAndShrink();
 
       this._model.clapCount++;
-      view.markAsClicked();
-      await view.showClickStreakCount(1);
-      view.showCount(this._model.clapCount);
+      this._model.streakCount++;
+      await view.showClickStreakCount(this._model);
     };
 
     view.onHold = () => console.log("hold");
