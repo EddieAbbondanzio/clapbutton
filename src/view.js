@@ -126,7 +126,6 @@ export class View {
         : Math.sign(count) * Math.abs(count);
 
     this._button.setAttribute("data-clap-count", formattedCount);
-
     this._button.title = `${count.toLocaleString()} claps`;
   }
 

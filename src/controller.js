@@ -1,7 +1,10 @@
+import { Timer } from "./timer";
+
 export class Controller {
   constructor(model, view) {
     this._model = model;
     this._view = view;
+    this._timer = new Timer(250);
 
     view.onHover = () => {
       view.showPulse();
@@ -20,7 +23,16 @@ export class Controller {
       await view.showClickStreakCount(this._model);
     };
 
-    view.onHold = () => console.log("hold");
-    view.onRelease = () => console.log("release");
+    view.onHold = async () => {
+      this._timer.start();
+      this._timer.onAlarm = async () => {
+        this._model.clapCount++;
+        this._model.streakCount++;
+        await view.showClickStreakCount(this._model);
+      };
+    };
+    view.onRelease = async () => {
+      this._timer.stop();
+    };
   }
 }

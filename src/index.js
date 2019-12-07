@@ -1,6 +1,7 @@
 import { Model } from "./model";
 import { View } from "./view";
 import { Controller } from "./controller";
+import { Timer } from "./timer";
 
 (function() {
   document.addEventListener("DOMContentLoaded", () => {
