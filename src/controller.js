@@ -1,10 +1,14 @@
 import { Timer } from "./timer";
 
 export class Controller {
-  constructor(model, view) {
+  constructor(model, view, service) {
+    const HOLD_CHARGE_TIME = 250;
+    const MAX_CLICK_LIMIT = 50;
+
     this._model = model;
     this._view = view;
-    this._timer = new Timer(250);
+    this._timer = new Timer(HOLD_CHARGE_TIME);
+    this._service = service;
 
     view.onHover = () => {
       view.showPulse();
@@ -12,27 +16,31 @@ export class Controller {
 
     view.onLeave = () => {
       view.hidePulse();
-      this._model.streakCount = 0;
+      this._service.clap(this._model.url, this._model.pendingClaps);
+      this._model.pendingClaps = 0;
     };
 
     view.onClick = async () => {
-      await view.growAndShrink();
-
-      this._model.clapCount++;
-      this._model.streakCount++;
-      await view.showClickStreakCount(this._model);
+      if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
+        await view.growAndShrink();
+        this.clap();
+      }
     };
 
     view.onHold = async () => {
       this._timer.start();
       this._timer.onAlarm = async () => {
-        this._model.clapCount++;
-        this._model.streakCount++;
-        await view.showClickStreakCount(this._model);
+        if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
+          this.clap();
+        }
       };
     };
-    view.onRelease = async () => {
-      this._timer.stop();
-    };
+    view.onRelease = async () => this._timer.stop();
+  }
+
+  async clap() {
+    this._model.claps++;
+    this._model.pendingClaps++;
+    await this._view.showClickStreakCount(this._model);
   }
 }

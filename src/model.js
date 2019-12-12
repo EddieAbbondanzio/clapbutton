@@ -1,7 +1,7 @@
 export class Model {
-  constructor(clapCount = 0) {
-    this.clapCount = clapCount;
-    this.wasClicked = false;
-    this.streakCount = 0;
+  constructor(url, claps = 0) {
+    this.url = url;
+    this.claps = claps;
+    this.pendingClaps = 0;
   }
 }

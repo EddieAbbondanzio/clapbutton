@@ -84,17 +84,17 @@ export class View {
       streakBubble = this._streakBubble;
     }
 
-    streakBubble.innerHTML = `<span>+${model.streakCount}</span>`;
+    streakBubble.innerHTML = `<span>+${model.pendingClaps}</span>`;
     let clickId = ++this._clickId;
 
-    if (model.streakCount == 1) {
+    if (model.pendingClaps == 1) {
       this._triggerAnimation(streakBubble, "first-pop-up-and-fade");
 
       await sleep(1000);
 
       if (clickId == this._clickId) {
         this._stopAnimation(streakBubble, "first-pop-up-and-fade");
-        this.showCount(model.clapCount);
+        this.showCount(model.claps);
       }
     } else {
       this._stopAnimation(streakBubble, "first-pop-up-and-fade");
@@ -104,7 +104,7 @@ export class View {
 
       if (clickId == this._clickId) {
         this._stopAnimation(streakBubble, "pop-up-and-fade");
-        this.showCount(model.clapCount);
+        this.showCount(model.claps);
       }
     }
 

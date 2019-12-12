@@ -2,6 +2,7 @@ import { Model } from "./model";
 import { View } from "./view";
 import { Controller } from "./controller";
 import { Timer } from "./timer";
+import { Service } from "./service";
 
 (function() {
   document.addEventListener("DOMContentLoaded", () => {
@@ -60,8 +61,9 @@ import { Timer } from "./timer";
 
       const model = new Model(1337);
       const view = new View(button);
-      const controller = new Controller(model, view);
-      view.showCount(model.clapCount);
+      const service = new Service('clapbutton.com/api');
+      const controller = new Controller(model, view, service);
+      view.showCount(model.claps);
     }
   });
 })();
