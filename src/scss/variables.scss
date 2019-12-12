@@ -1,0 +1,30 @@
+$gray-text: rgba(158, 158, 158, 1);
+$gray-bubble:  rgba(245, 245, 245, 1);
+
+$red-text: rgba(244, 67, 54, 1);
+$red-bubble: rgba(255, 205, 210, 1);
+
+$green-text: rgba(76, 175, 80, 1);
+$green-bubble: rgba(200, 230, 201, 1);
+
+$blue-text: rgba(33, 150, 243, 1);
+$blue-bubble: rgba(187, 222, 251, 1);
+
+$themes: (
+  '': (
+    text: $gray-text,
+    bubble: $gray-bubble
+  ),
+  'red': (
+    text: $red-text,
+    bubble: $red-bubble
+  ),
+  'green': (
+    text: $green-text,
+    bubble: $green-bubble
+  ),
+  'blue': (
+    text: $blue-text,
+    bubble: $blue-bubble
+  ),
+);

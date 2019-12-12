@@ -1,113 +1,63 @@
-@keyframes shadow-pulse {
-  0% {
-    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
-  }
+@import "animations.scss";
+@import "variables.scss";
 
-  100% {
-    box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
-  }
-}
+$themes: (
+  '': (
+    text: $gray-text,
+    bubble: $gray-bubble
+  ),
+  'red': (
+    text: $red-text,
+    bubble: $red-bubble
+  ),
+  'green': (
+    text: $green-text,
+    bubble: $green-bubble
+  ),
+  'blue': (
+    text: $blue-text,
+    bubble: $blue-bubble
+  ),
+);
 
-@keyframes grow {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
+@each $name, $colors in $themes {
+    $text: map-get($colors, 'text');
+    $bubble: map-get($colors, 'bubble');
 
-@keyframes grow-and-shrink {
-  50% {
-    height: 72px;
-    width: 72px;
-  }
-}
+    .clap-button-#{$name} {
+      color: $text;
+      border: 1px solid $text;
 
-@keyframes first-pop-up-and-fade {
-  0% {
-    transform: translateY(-60px);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-80px);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-}
+      &:active {
+        border: 1px solid $text;
+      }
 
-@keyframes pop-up-and-fade {
-  0% {
-    /* was 0.9 */
-    transform: translateY(-80px) scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: translateY(-80px) scale(1.2);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-100px) scale(1);
-    opacity: 0;
-  }
-}
+      &:before {
+        color: $text;
+      }
 
-.shadow-pulse {
-  animation: shadow-pulse 1.2s infinite;
-}
+      &.clap-button-clicked {
+        background-color: lighten($bubble, 5%) !important;
+      }
 
-.grow-and-shrink {
-  animation: grow-and-shrink 0.2s forwards;
-}
+      svg {
+        fill: $text;
+      }
 
-.grow {
-  animation: grow 0.1s forwards;
-}
+      .streak-bubble {
+        background-color: $bubble;
 
-.shrink {
-  animation: grow 0.1s reverse;
-}
-
-.first-pop-up-and-fade {
-  animation: first-pop-up-and-fade 1s forwards;
-}
-
-.pop-up-and-fade {
-  animation: pop-up-and-fade 1s forwards;
-}
-
-:root {
-  --clap-color: rgba(158, 158, 158, 1);
-  --clap-background: rgba(245, 245, 245, 1);
-}
-
-.clap-button-red {
-  --clap-color: rgba(244, 67, 54, 1);
-  --clap-background: rgba(255, 205, 210, 1);
-}
-
-.clap-button-green {
-  --clap-color: rgba(76, 175, 80, 1);
-  --clap-background: rgba(200, 230, 201, 1);
-}
-
-.clap-button-blue {
-  --clap-color: rgba(33, 150, 243, 1);
-  --clap-background: rgba(187, 222, 251, 1);
-}
-
-.clap-button-clicked {
-  background-color: var(--clap-background) !important;
+        span {
+          color: $text;
+        }
+      }
+    }
 }
 
 .clap-button {
   background-color: transparent;
   height: 60px;
   width: 60px;
-  border: 1px solid var(--clap-color);
   padding: 12px;
   border-radius: 50%;
   cursor: pointer;
@@ -116,24 +66,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
 
-.clap-button svg {
-  height: 34px;
-  width: 34px;
-  flex-shrink: 0;
-}
+  &:before {
+    font-size: 1em;
+    content: attr(data-clap-count);
+    position: absolute;
+    top: -28px;
+  }
 
-.clap-button:active {
-  border: 1px solid var(--clap-color);
-}
+  svg {
+    height: 34px;
+    width: 34px;
+    flex-shrink: 0;
+  }
 
-.clap-button:before {
-  font-size: 1em;
-  content: attr(data-clap-count);
-  position: absolute;
-  top: -28px;
-  color: var(--clap-color);
 }
 
 .streak-bubble {
@@ -141,13 +87,8 @@
   border-radius: 50%;
   height: 36px;
   width: 36px;
-  background-color: var(--clap-background);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: default;
-}
-
-.streak-bubble span {
-  color: var(--clap-color);
 }
