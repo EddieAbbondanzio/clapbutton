@@ -133,15 +133,17 @@ export class View {
     this._button.removeAttribute("data-clap-count");
   }
 
+  markAsClapped() {
+    this._button.classList.add("clap-button-clicked");
+  }
+
   _notifyListeners(eventName) {
     if (this[eventName] != null) {
       this[eventName]();
     }
   }
 
-  markAsClicked() {
-    this._button.classList.add("clap-button-clicked");
-  }
+
 
   _triggerAnimation(element, className) {
     element.classList.remove(className);

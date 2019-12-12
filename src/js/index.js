@@ -3,6 +3,7 @@ import { View } from "./view";
 import { Controller } from "./controller";
 import { Timer } from "./timer";
 import { Service } from "./service";
+import '../scss/styles.scss';
 
 (function() {
   document.addEventListener("DOMContentLoaded", () => {

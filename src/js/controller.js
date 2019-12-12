@@ -41,6 +41,9 @@ export class Controller {
   async clap() {
     this._model.claps++;
     this._model.pendingClaps++;
+    this._view.markAsClapped();
     await this._view.showClickStreakCount(this._model);
+
+    this._model.wasClapped = true;
   }
 }
