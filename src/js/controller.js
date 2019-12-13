@@ -21,6 +21,8 @@ export class Controller {
     };
 
     view.onClick = async () => {
+      view.hidePulse();
+      
       if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
         await view.growAndShrink();
         this.clap();

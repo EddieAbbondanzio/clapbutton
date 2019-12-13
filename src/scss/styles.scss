@@ -33,6 +33,10 @@
         }
       }
     }
+
+    .dotted-confetti {
+      border-color: $bubble;
+    }
 }
 
 .clap-button {
@@ -75,9 +79,9 @@
 }
 
 .confetti {
-  background-color: red;
   border-radius: 50%;
-  height: 12px;
-  width: 12px;
+  padding: 12px;
+  border-style: dotted;
+  animation: flying-dots 0.75s forwards;
   position: absolute;
 }

@@ -141,14 +141,12 @@ export class View {
   async fireConfetti() {
     const id = ++this._confettiId;
 
-    for(let i = 0; i < 5; i++) {
       const confetti = document.createElement('div');
-      confetti.className = `confetti confetti-${i + 1}`;
+      confetti.className = `confetti`;
       confetti.setAttribute('data-confetti-id', id);
       confetti.innerHTML = '&nbsp;';
 
       this._button.appendChild(confetti);
-    }
 
     await sleep(1000);
 
