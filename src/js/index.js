@@ -60,7 +60,7 @@ import '../scss/styles.scss';
        </g>
        </svg>`;
 
-      const model = new Model(1337);
+      const model = new Model('',1337);
       const view = new View(button);
       const service = new Service('clapbutton.com/api');
       const controller = new Controller(model, view, service);

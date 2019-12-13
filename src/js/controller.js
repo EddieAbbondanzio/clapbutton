@@ -42,6 +42,7 @@ export class Controller {
     this._model.claps++;
     this._model.pendingClaps++;
     this._view.markAsClapped();
+    this._view.fireConfetti();
     await this._view.showClickStreakCount(this._model);
 
     this._model.wasClapped = true;

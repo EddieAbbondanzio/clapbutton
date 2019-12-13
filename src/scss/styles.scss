@@ -1,25 +1,6 @@
 @import "animations.scss";
 @import "variables.scss";
 
-$themes: (
-  '': (
-    text: $gray-text,
-    bubble: $gray-bubble
-  ),
-  'red': (
-    text: $red-text,
-    bubble: $red-bubble
-  ),
-  'green': (
-    text: $green-text,
-    bubble: $green-bubble
-  ),
-  'blue': (
-    text: $blue-text,
-    bubble: $blue-bubble
-  ),
-);
-
 @each $name, $colors in $themes {
     $text: map-get($colors, 'text');
     $bubble: map-get($colors, 'bubble');
@@ -91,4 +72,12 @@ $themes: (
   align-items: center;
   justify-content: center;
   cursor: default;
+}
+
+.confetti {
+  background-color: red;
+  border-radius: 50%;
+  height: 12px;
+  width: 12px;
+  position: absolute;
 }

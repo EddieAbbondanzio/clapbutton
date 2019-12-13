@@ -4,6 +4,7 @@ export class View {
   constructor(button) {
     this._button = button;
     this._clickId = 0;
+    this._confettiId = 0;
 
     const HOLD_CLICK_DELAY = 250;
 
@@ -137,13 +138,33 @@ export class View {
     this._button.classList.add("clap-button-clicked");
   }
 
+  async fireConfetti() {
+    const id = ++this._confettiId;
+
+    for(let i = 0; i < 5; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = `confetti confetti-${i + 1}`;
+      confetti.setAttribute('data-confetti-id', id);
+      confetti.innerHTML = '&nbsp;';
+
+      this._button.appendChild(confetti);
+    }
+
+    await sleep(1000);
+
+    var confettiChilds = Array.from(this._button.children);
+    confettiChilds.forEach((c) => {
+      if(c.classList.contains('confetti') && c.getAttribute('data-confetti-id') == id.toString()) {
+        c.remove();
+      }
+    })
+  }
+
   _notifyListeners(eventName) {
     if (this[eventName] != null) {
       this[eventName]();
     }
   }
-
-
 
   _triggerAnimation(element, className) {
     element.classList.remove(className);
