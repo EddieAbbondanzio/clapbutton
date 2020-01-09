@@ -1,7 +1,7 @@
 {
-  "name": "clapbutton",
-  "version": "1.0.0",
-  "description": "A micro interaction clap button for readers to give feedback to authors",
+  "name": "clap-button-com",
+  "version": "0.0.2",
+  "description": "A clap button for readers to give feedback.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/EddieAbbondanzio/clapbutton.com.git"
   },
   "author": "Ed Abbondanzio",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/EddieAbbondanzio/clapbutton.com/issues"
   },
