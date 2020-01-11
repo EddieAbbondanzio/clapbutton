@@ -1,4 +1,4 @@
-import { Timer } from "./timer";
+import { Timer } from './timer';
 
 export class Controller {
   constructor(model, view, service) {
@@ -22,7 +22,7 @@ export class Controller {
 
     view.onClick = async () => {
       view.hidePulse();
-      
+
       if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
         await view.growAndShrink();
         this.clap();
@@ -31,13 +31,18 @@ export class Controller {
 
     view.onHold = async () => {
       this._timer.start();
+      view.grow();
+
       this._timer.onAlarm = async () => {
         if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
           this.clap();
         }
       };
     };
-    view.onRelease = async () => this._timer.stop();
+    view.onRelease = async () => {
+      this._timer.stop();
+      view.shrink();
+    };
   }
 
   async clap() {

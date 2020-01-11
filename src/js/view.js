@@ -112,6 +112,14 @@ export class View {
     }
   }
 
+  async grow() {
+    this._triggerAnimation(this._icon, 'grow');
+  }
+
+  async shrink() {
+    this._stopAnimation(this._icon, 'grow');
+  }
+
   async growAndShrink() {
     await this._temporaryAnimation(this._icon, 'grow-and-shrink', 200);
   }
