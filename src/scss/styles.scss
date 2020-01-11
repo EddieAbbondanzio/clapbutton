@@ -1,56 +1,67 @@
-@import "animations.scss";
-@import "variables.scss";
+@import 'animations.scss';
+@import 'variables.scss';
 
 @each $name, $colors in $themes {
-    $text: map-get($colors, 'text');
-    $bubble: map-get($colors, 'bubble');
+  $text: map-get($colors, 'text');
+  $bubble: map-get($colors, 'bubble');
 
-    .clap-button-#{$name} {
+  .clap-button-#{$name} {
+    &:before {
       color: $text;
-      border: 1px solid $text;
+    }
 
-      &:active {
-        border: 1px solid $text;
-      }
+    .clap-icon {
+      color: $text;
+      fill: $text;
+    }
 
-      &:before {
-        color: $text;
-      }
-
-      &.clap-button-clicked {
+    &.clap-button-clicked {
+      svg {
         background-color: lighten($bubble, 5%) !important;
       }
+    }
 
-      svg {
-        fill: $text;
-      }
+    .streak-bubble {
+      background-color: $bubble;
 
-      .streak-bubble {
-        background-color: $bubble;
-
-        span {
-          color: $text;
-        }
+      span {
+        color: $text;
       }
     }
 
-    .dotted-confetti {
+    .confetti {
       border-color: $bubble;
     }
+  }
 }
 
 .clap-button {
+  border: none;
+
+  &:active {
+    border: none !important;
+    border-image-width: 0px !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
   background-color: transparent;
   height: 60px;
   width: 60px;
-  padding: 12px;
-  border-radius: 50%;
   cursor: pointer;
+  display: inline-flex;
   position: relative;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .clap-icon {
+    padding: 12px;
+    height: 34px !important;
+    width: 34px !important;
+    border: 1px solid;
+    border-radius: 50%;
+  }
 
   &:before {
     font-size: 1em;
@@ -64,7 +75,6 @@
     width: 34px;
     flex-shrink: 0;
   }
-
 }
 
 .streak-bubble {

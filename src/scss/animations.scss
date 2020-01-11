@@ -1,59 +1,60 @@
 @keyframes shadow-pulse {
-    0% {
-      box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
-    }
-  
-    100% {
-      box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
-    }
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 0, 0, 0.2);
   }
-  
-  @keyframes grow {
-    0% {
-      transform: scale(1);
-    }
-    100% {
-      transform: scale(1.1);
-    }
+
+  100% {
+    box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
   }
-  
-  @keyframes grow-and-shrink {
-    50% {
-      height: 72px;
-      width: 72px;
-    }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
   }
-  
-  @keyframes first-pop-up-and-fade {
-    0% {
-      transform: translateY(-60px);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(-80px);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-100px);
-      opacity: 0;
-    }
+  100% {
+    transform: scale(1.1);
   }
-  
-  @keyframes pop-up-and-fade {
-    0% {
-      /* was 0.9 */
-      transform: translateY(-80px) scale(1);
-      opacity: 1;
-    }
-    50% {
-      transform: translateY(-80px) scale(1.2);
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(-100px) scale(1);
-      opacity: 0;
-    }
+}
+
+@keyframes grow-and-shrink {
+  50% {
+    transform: scale(1.1);
+    // height: 72px !important;
+    // width: 72px !important;
   }
+}
+
+@keyframes first-pop-up-and-fade {
+  0% {
+    transform: translateY(-60px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-80px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+@keyframes pop-up-and-fade {
+  0% {
+    /* was 0.9 */
+    transform: translateY(-80px) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-80px) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
 
 @keyframes flying-dots {
   0% {
@@ -77,25 +78,25 @@
 }
 
 .shadow-pulse {
-    animation: shadow-pulse 1.2s infinite;
-  }
-  
-  .grow-and-shrink {
-    animation: grow-and-shrink 0.2s forwards;
-  }
-  
-  .grow {
-    animation: grow 0.1s forwards;
-  }
-  
-  .shrink {
-    animation: grow 0.1s reverse;
-  }
-  
-  .first-pop-up-and-fade {
-    animation: first-pop-up-and-fade 1s forwards;
-  }
-  
-  .pop-up-and-fade {
-    animation: pop-up-and-fade 1s forwards;
-  }
+  animation: shadow-pulse 1.2s infinite;
+}
+
+.grow-and-shrink {
+  animation: grow-and-shrink 0.2s forwards;
+}
+
+.grow {
+  animation: grow 0.1s forwards;
+}
+
+.shrink {
+  animation: grow 0.1s reverse;
+}
+
+.first-pop-up-and-fade {
+  animation: first-pop-up-and-fade 1s forwards;
+}
+
+.pop-up-and-fade {
+  animation: pop-up-and-fade 1s forwards;
+}

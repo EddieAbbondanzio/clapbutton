@@ -1,8 +1,9 @@
-import { sleep } from "./sleep";
+import { sleep } from './sleep';
 
 export class View {
   constructor(button) {
     this._button = button;
+    this._icon = button.children[0];
     this._clickId = 0;
     this._confettiId = 0;
 
@@ -12,21 +13,16 @@ export class View {
     let isHold = false;
     let longTimeOutId = null;
 
-    button.addEventListener("mouseover", () =>
-      this._notifyListeners("onHover")
-    );
+    button.addEventListener('mouseover', () => this._notifyListeners('onHover'));
 
-    button.addEventListener("mouseleave", () =>
-      this._notifyListeners("onLeave")
-    );
+    button.addEventListener('mouseleave', () => this._notifyListeners('onLeave'));
 
-    button.addEventListener("mousedown", e => {
+    button.addEventListener('mousedown', e => {
+      console.log(e.target);
+
       // Don't accept a click if it's not the BUTTON
       if (e.target != this._button) {
-        if (
-          e.target.parentNode != this._button ||
-          e.target == this._streakBubble
-        ) {
+        if (e.target.parentNode != this._button || e.target == this._streakBubble) {
           return;
         }
       }
@@ -38,33 +34,33 @@ export class View {
 
       longTimeOutId = setTimeout(() => {
         isHold = true;
-        this._notifyListeners("onHold");
+        this._notifyListeners('onHold');
       }, HOLD_CLICK_DELAY);
     });
 
-    window.addEventListener("mouseup", e => {
+    window.addEventListener('mouseup', e => {
       if (isDown) {
         isDown = false;
 
         if (isHold) {
           e.preventDefault();
 
-          this._notifyListeners("onRelease");
+          this._notifyListeners('onRelease');
           return;
         }
 
-        this._notifyListeners("onClick");
+        this._notifyListeners('onClick');
         clearTimeout(longTimeOutId);
       }
     });
   }
 
   showPulse() {
-    this._triggerAnimation(this._button, "shadow-pulse");
+    this._triggerAnimation(this._icon, 'shadow-pulse');
   }
 
   hidePulse() {
-    this._stopAnimation(this._button, "shadow-pulse");
+    this._stopAnimation(this._icon, 'shadow-pulse');
   }
 
   async showClickStreakCount(model) {
@@ -76,8 +72,8 @@ export class View {
 
     // Get the cached bubble, or create a new one.
     if (this._streakBubble == null) {
-      streakBubble = document.createElement("div");
-      streakBubble.className = "streak-bubble";
+      streakBubble = document.createElement('div');
+      streakBubble.className = 'streak-bubble';
       this._button.appendChild(streakBubble);
 
       this._streakBubble = streakBubble;
@@ -89,22 +85,22 @@ export class View {
     let clickId = ++this._clickId;
 
     if (model.pendingClaps == 1) {
-      this._triggerAnimation(streakBubble, "first-pop-up-and-fade");
+      this._triggerAnimation(streakBubble, 'first-pop-up-and-fade');
 
       await sleep(1000);
 
       if (clickId == this._clickId) {
-        this._stopAnimation(streakBubble, "first-pop-up-and-fade");
+        this._stopAnimation(streakBubble, 'first-pop-up-and-fade');
         this.showCount(model.claps);
       }
     } else {
-      this._stopAnimation(streakBubble, "first-pop-up-and-fade");
-      this._triggerAnimation(streakBubble, "pop-up-and-fade");
+      this._stopAnimation(streakBubble, 'first-pop-up-and-fade');
+      this._triggerAnimation(streakBubble, 'pop-up-and-fade');
 
       await sleep(1000);
 
       if (clickId == this._clickId) {
-        this._stopAnimation(streakBubble, "pop-up-and-fade");
+        this._stopAnimation(streakBubble, 'pop-up-and-fade');
         this.showCount(model.claps);
       }
     }
@@ -117,45 +113,45 @@ export class View {
   }
 
   async growAndShrink() {
-    await this._temporaryAnimation(this._button, "grow-and-shrink", 200);
+    await this._temporaryAnimation(this._icon, 'grow-and-shrink', 200);
   }
 
   async showCount(count) {
     let formattedCount =
       Math.abs(count) > 999
-        ? Math.sign(count) * (Math.abs(count) / 1000).toFixed(1) + "k"
+        ? Math.sign(count) * (Math.abs(count) / 1000).toFixed(1) + 'k'
         : Math.sign(count) * Math.abs(count);
 
-    this._button.setAttribute("data-clap-count", formattedCount);
+    this._button.setAttribute('data-clap-count', formattedCount);
     this._button.title = `${count.toLocaleString()} claps`;
   }
 
   async hideCount() {
-    this._button.removeAttribute("data-clap-count");
+    this._button.removeAttribute('data-clap-count');
   }
 
   markAsClapped() {
-    this._button.classList.add("clap-button-clicked");
+    this._button.classList.add('clap-button-clicked');
   }
 
   async fireConfetti() {
     const id = ++this._confettiId;
 
-      const confetti = document.createElement('div');
-      confetti.className = `confetti`;
-      confetti.setAttribute('data-confetti-id', id);
-      confetti.innerHTML = '&nbsp;';
+    const confetti = document.createElement('div');
+    confetti.className = `confetti`;
+    confetti.setAttribute('data-confetti-id', id);
+    confetti.innerHTML = '&nbsp;';
 
-      this._button.appendChild(confetti);
+    this._button.appendChild(confetti);
 
     await sleep(1000);
 
     var confettiChilds = Array.from(this._button.children);
-    confettiChilds.forEach((c) => {
-      if(c.classList.contains('confetti') && c.getAttribute('data-confetti-id') == id.toString()) {
+    confettiChilds.forEach(c => {
+      if (c.classList.contains('confetti') && c.getAttribute('data-confetti-id') == id.toString()) {
         c.remove();
       }
-    })
+    });
   }
 
   _notifyListeners(eventName) {

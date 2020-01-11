@@ -1,33 +1,23 @@
-import { Model } from "./model";
-import { View } from "./view";
-import { Controller } from "./controller";
-import { Timer } from "./timer";
-import { Service } from "./service";
+import { Model } from './model';
+import { View } from './view';
+import { Controller } from './controller';
+import { Timer } from './timer';
+import { Service } from './service';
 import '../scss/styles.scss';
 
 (function() {
-  document.addEventListener("DOMContentLoaded", () => {
-    var buttons = document.getElementsByClassName("clap-button");
+  document.addEventListener('DOMContentLoaded', () => {
+    var buttons = document.getElementsByClassName('clap-button');
 
     for (let button of buttons) {
-      const color = button.getAttribute("data-color") || "gray";
-
-      if (!["red", "green", "blue", "gray"].includes(color)) {
-        throw new Error(`Invalid color: ${color}`);
-      } else {
-        button.classList.add(`clap-button-${color}`);
-      }
-
-      button.innerHTML = `<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+      button.innerHTML = `<svg class="clap-icon" version="1.0" xmlns="http://www.w3.org/2000/svg"
         width="256.000000pt" height="255.000000pt" viewBox="0 0 256.000000 255.000000"
         preserveAspectRatio="xMidYMid meet">
        <g transform="translate(0.000000,255.000000) scale(0.100000,-0.100000)"
        >
-       <path style="fill: var(--clap-color)" d="M1812 2353 c-6 -10 -13 -75 -17 -143 -6 -108 -5 -127 8 -139 21 -17
-       56 -5 62 22 3 12 6 78 8 147 l2 125 -27 3 c-18 2 -30 -3 -36 -15z"/>
-       <path style="fill: var(--clap-color)" d="M2053 2178 c-57 -57 -106 -113 -109 -125 -7 -26 11 -53 34 -53 18 0
-       229 206 238 232 7 24 -12 48 -39 48 -12 0 -61 -41 -124 -102z"/>
-       <path style="fill: var(--clap-color);" d="M1335 2039 c-19 -5 -92 -71 -199 -178 l-170 -170 -17 29 c-40 64
+       <path d="M1812 2353 c-6 -10 -13 -75 -17 -143 -6 -108 -5 -127 8 -139 21 -17
+       56 -5 62 22 3 12 6 78 8 147 l2 125 -27 3 c-18 2 -30 -3 -36 -15z M2053 2178 c-57 -57 -106 -113 -109 -125 -7 -26 11 -53 34 -53 18 0
+       229 206 238 232 7 24 -12 48 -39 48 -12 0 -61 -41 -124 -102z M1335 2039 c-19 -5 -92 -71 -199 -178 l-170 -170 -17 29 c-40 64
        -112 85 -182 51 -53 -26 -336 -309 -391 -392 -49 -74 -85 -179 -92 -272 -9
        -97 15 -205 67 -305 25 -48 39 -89 39 -112 0 -57 36 -185 72 -253 67 -128 219
        -243 367 -277 144 -33 315 0 441 85 38 26 195 175 383 362 l317 319 0 47 c0
@@ -55,12 +45,20 @@ import '../scss/styles.scss';
        166 32 104 69 153 251 337 139 140 171 167 195 167 39 0 66 -26 66 -64 0 -26
        -17 -48 -105 -136 -85 -85 -105 -110 -103 -130 2 -18 10 -26 28 -28 21 -2 76
        48 335 308 330 330 334 333 382 288z"/>
-       <path style="fill: var(--clap-color);" d="M2152 1945 c-68 -7 -128 -17 -134 -23 -5 -5 -8 -20 -6 -33 l3 -24
+       <path d="M2152 1945 c-68 -7 -128 -17 -134 -23 -5 -5 -8 -20 -6 -33 l3 -24
        135 3 c138 3 180 14 180 47 0 13 -38 47 -50 44 -3 -1 -61 -7 -128 -14z"/>
        </g>
        </svg>`;
 
-      const model = new Model('',1337);
+      const color = button.getAttribute('data-color') || 'gray';
+
+      if (!['red', 'green', 'blue', 'gray'].includes(color)) {
+        throw new Error(`Invalid color: ${color}`);
+      } else {
+        button.classList.add(`clap-button-${color}`);
+      }
+
+      const model = new Model('', 1337);
       const view = new View(button);
       const service = new Service('clapbutton.com/api');
       const controller = new Controller(model, view, service);
