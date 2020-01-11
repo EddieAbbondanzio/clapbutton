@@ -52,7 +52,7 @@ import '../scss/styles.scss';
 
       const color = button.getAttribute('data-color') || 'gray';
 
-      if (!['red', 'green', 'blue', 'gray'].includes(color)) {
+      if (!['red', 'green', 'blue', 'grey', 'white'].includes(color)) {
         throw new Error(`Invalid color: ${color}`);
       } else {
         button.classList.add(`clap-button-${color}`);
