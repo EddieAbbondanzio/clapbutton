@@ -18,8 +18,6 @@ export class View {
     button.addEventListener('mouseleave', () => this._notifyListeners('onLeave'));
 
     button.addEventListener('mousedown', e => {
-      console.log(e.target);
-
       // Don't accept a click if it's not the BUTTON
       if (e.target != this._button) {
         if (e.target.parentNode != this._button || e.target == this._streakBubble) {
@@ -81,7 +79,7 @@ export class View {
       streakBubble = this._streakBubble;
     }
 
-    streakBubble.innerHTML = `<span>+${model.pendingClaps}</span>`;
+    streakBubble.innerHTML = `<span>+${model.pendingClaps + model.postedClaps}</span>`;
     let clickId = ++this._clickId;
 
     if (model.pendingClaps == 1) {

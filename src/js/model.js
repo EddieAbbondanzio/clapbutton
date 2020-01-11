@@ -3,6 +3,7 @@ export class Model {
     this.url = url;
     this.claps = claps;
     this.pendingClaps = 0;
+    this.postedClaps = 0;
     this.wasClapped = false;
   }
 }

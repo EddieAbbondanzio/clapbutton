@@ -17,6 +17,7 @@ export class Controller {
     view.onLeave = () => {
       view.hidePulse();
       this._service.clap(this._model.url, this._model.pendingClaps);
+      this._model.postedClaps += this._model.pendingClaps;
       this._model.pendingClaps = 0;
     };
 
@@ -34,7 +35,7 @@ export class Controller {
       view.grow();
 
       this._timer.onAlarm = async () => {
-        if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
+        if (this._model.pendingClaps + this._model.postedClaps < MAX_CLICK_LIMIT) {
           this.clap();
         }
       };
