@@ -1,6 +1,6 @@
 {
   "name": "clap-button-com",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A clap button for readers to give feedback.",
   "main": "index.js",
   "scripts": {
