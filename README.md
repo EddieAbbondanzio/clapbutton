@@ -1,10 +1,10 @@
 # ClapButton
 
-An easy to use, open source clap button similar to the one on medium.com. Allows users to clap once, or up to 50 times for an article. Only requires 3 lines of HTML to use. The button requires an API to function (more below). For a turn key solution checkout https://clapbutton.com.
+An easy to use, open source clap button similar to the one on medium.com. Allows users to clap once, or up to 50 times for a web page. Only requires 3 lines of HTML and an API to function (more below). For a turn key solution checkout https://clapbutton.com.
 
 ## Installation
 
-It doesn't take much to add the clap button to your site or blog. In the head of your HTML page you'll need to add a reference to our CSS file, and one more for our Javascript file.
+It doesn't take much to add the clap button to your site or blog. In the head of your HTML page you'll need to add a reference for a CSS file, and one more for a Javascript file.
 
 ```html
 <!-- In the <head> of your HTML page. -->
@@ -14,7 +14,7 @@ It doesn't take much to add the clap button to your site or blog. In the head of
 
 ## Usage
 
-Then when your ready to use the button it's as easy as a single line of code.
+To use the button it's as easy as a single line.
 
 ```html
 <!-- Where ever you want the button -->

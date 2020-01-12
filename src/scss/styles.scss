@@ -38,6 +38,11 @@
 .clap-button {
   border: none;
 
+  &:focus {
+    border: none !important;
+    outline: 0 !important;
+  }
+
   &:active {
     border: none !important;
     border-image-width: 0px !important;

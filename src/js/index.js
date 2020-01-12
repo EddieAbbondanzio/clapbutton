@@ -37,7 +37,7 @@ import '../scss/styles.scss';
         button.classList.add(`clap-button-${color}`);
       }
 
-      const model = new Model(pageUrl, 0);
+      const model = new Model(pageUrl, 27);
       const view = new View(button);
       const service = new Service(backendUrl, devMode);
       const controller = new Controller(model, view, service);
