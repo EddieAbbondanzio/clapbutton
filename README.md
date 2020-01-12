@@ -2,14 +2,16 @@
 
 An easy to use, open source clap button similar to the one on medium.com. Allows users to clap once, or up to 50 times for a web page. Only requires 3 lines of HTML and an API to function (more below). For a turn key solution checkout https://clapbutton.com.
 
+![Gif Example](https://github.com/EddieAbbondanzio/clapbutton/tree/master/images/example.gif)
+
 ## Installation
 
 It doesn't take much to add the clap button to your site or blog. In the head of your HTML page you'll need to add a reference for a CSS file, and one more for a Javascript file.
 
 ```html
 <!-- In the <head> of your HTML page. -->
-<script src="https://unpkg.com/clap-button-com@0.0.4/dist/main.js"></script>
-<link rel="stylesheet" href="https://unpkg.com/clap-button-com@0.0.4/dist/styles.css" />
+<script src="https://unpkg.com/clap-button-com/dist/main.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/clap-button-com/dist/styles.css" />
 ```
 
 ## Usage
