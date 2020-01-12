@@ -1,6 +1,16 @@
 import { Timer } from './timer';
 
+/**
+ * Controller to handle modifying the button model, and updating
+ * the view on screen.
+ */
 export class Controller {
+  /**
+   * Create a new button controller.
+   * @param {Model} model The button data.
+   * @param {View} view The rendering of the button.
+   * @param {Service} service The API service for claps.
+   */
   constructor(model, view, service) {
     const HOLD_CHARGE_TIME = 250;
     const MAX_CLICK_LIMIT = 50;
@@ -26,7 +36,7 @@ export class Controller {
 
       if (this._model.pendingClaps < MAX_CLICK_LIMIT) {
         await view.growAndShrink();
-        this.clap();
+        this._clap();
       }
     };
 
@@ -36,17 +46,30 @@ export class Controller {
 
       this._timer.onAlarm = async () => {
         if (this._model.pendingClaps + this._model.postedClaps < MAX_CLICK_LIMIT) {
-          this.clap();
+          this._clap();
         }
       };
     };
+
     view.onRelease = async () => {
       this._timer.stop();
       view.shrink();
     };
+
+    // Pull in the original count of the button.
+    service
+      .getClaps(model.url)
+      .then(count => {
+        model.claps = count;
+        view.showCount(model.claps);
+      })
+      .catch(e => console.log(e));
   }
 
-  async clap() {
+  /**
+   * Update the clap model by 1.
+   */
+  async _clap() {
     this._model.claps++;
     this._model.pendingClaps++;
     this._view.markAsClapped();

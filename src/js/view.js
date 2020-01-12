@@ -1,6 +1,13 @@
 import { sleep } from './sleep';
 
+/**
+ * On screen view of the button. This is represented in the HTML DOM.
+ */
 export class View {
+  /**
+   * Create a new view.
+   * @param {HTMLElement} button The HTML button.
+   */
   constructor(button) {
     this._button = button;
     this._icon = button.children[0];
@@ -53,14 +60,25 @@ export class View {
     });
   }
 
+  /**
+   * Show the shadow pulse.
+   */
   showPulse() {
     this._triggerAnimation(this._icon, 'shadow-pulse');
   }
 
+  /**
+   * Hide the shadow pulse.
+   */
   hidePulse() {
     this._stopAnimation(this._icon, 'shadow-pulse');
   }
 
+  /**
+   * Show the number of times the button has been pressed
+   * as a colored bubble above the actual button.
+   * @param {Model} model
+   */
   async showClickStreakCount(model) {
     // Hide pulsing shadow, and the total click count
     this.hidePulse();
@@ -110,18 +128,32 @@ export class View {
     }
   }
 
+  /**
+   * Enlarge the button to indicate it's being held down.
+   */
   async grow() {
     this._triggerAnimation(this._icon, 'grow');
   }
 
+  /**
+   * Shrink the button back to normal size as if the button was released
+   * from being held.
+   */
   async shrink() {
     this._stopAnimation(this._icon, 'grow');
   }
 
+  /**
+   * Rapidly grow and shrink the button as if it was briefly pressed.
+   */
   async growAndShrink() {
     await this._temporaryAnimation(this._icon, 'grow-and-shrink', 200);
   }
 
+  /**
+   * Show the current clap count.
+   * @param {number} count The number of claps.
+   */
   async showCount(count) {
     let formattedCount =
       Math.abs(count) > 999
@@ -132,14 +164,24 @@ export class View {
     this._button.title = `${count.toLocaleString()} claps`;
   }
 
+  /**
+   * Hide the clap count.
+   */
   async hideCount() {
     this._button.removeAttribute('data-clap-count');
   }
 
+  /**
+   * Highlight the button to show that it's been clicked at least once.
+   */
   markAsClapped() {
     this._button.classList.add('clap-button-clicked');
   }
 
+  /**
+   * Fire off the spiral of confetti to celebrate
+   * the button being pressed.
+   */
   async fireConfetti() {
     const id = ++this._confettiId;
 
@@ -160,22 +202,42 @@ export class View {
     });
   }
 
+  /**
+   * Alert any subscribers that an event has occured.
+   * @param {string} eventName The name of the publishable event.
+   */
   _notifyListeners(eventName) {
     if (this[eventName] != null) {
       this[eventName]();
     }
   }
 
+  /**
+   * Start a CSS animation on an element.
+   * @param {HTMLElement} element The HTMLElement to start animating.
+   * @param {string} className The name of the animation.
+   */
   _triggerAnimation(element, className) {
     element.classList.remove(className);
     void element.offsetWidth;
     element.classList.add(className);
   }
 
+  /**
+   * Stop a CSS animation.
+   * @param {HTMLElement} element The element to stop animating.
+   * @param {string} className The name of the animation.
+   */
   _stopAnimation(element, className) {
     element.classList.remove(className);
   }
 
+  /**
+   * Apply a CSS animation to a HTMLElement temporarily.
+   * @param {HTMLElement} element The HTML element to add the animation to.
+   * @param {*} className The name of the animation.
+   * @param {*} milliseconds How many milliseconds to animate for.
+   */
   async _temporaryAnimation(element, className, milliseconds) {
     element.classList.remove(className);
     void element.offsetWidth;

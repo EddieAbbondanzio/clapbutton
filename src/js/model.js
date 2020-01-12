@@ -1,4 +1,12 @@
+/**
+ * Button model.
+ */
 export class Model {
+  /**
+   * Create a new model.
+   * @param {string} url The page URL.
+   * @param {number} claps The clap count.
+   */
   constructor(url, claps = 0) {
     this.url = url;
     this.claps = claps;
