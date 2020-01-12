@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EddieAbbondanzio/clapbutton.com.git"
+    "url": "git+https://github.com/EddieAbbondanzio/clapbutton.git"
   },
   "author": "Ed Abbondanzio",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/EddieAbbondanzio/clapbutton.com/issues"
+    "url": "https://github.com/EddieAbbondanzio/clapbutton/issues"
   },
-  "homepage": "https://github.com/EddieAbbondanzio/clapbutton.com#readme",
+  "homepage": "https://github.com/EddieAbbondanzio/clapbutton#readme",
   "devDependencies": {
     "css-loader": "^3.3.0",
     "file-loader": "^5.0.2",
