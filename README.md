@@ -45,6 +45,8 @@ By default the button detects the current page url using `window.location.href`.
 
 ### Color
 
+![Sample of supported colors](https://raw.githubusercontent.com/EddieAbbondanzio/clapbutton/master/images/all-colors.jpg)
+
 The button comes in multiple flavors red, green, blue, grey, and white! By default the button will be set to green but it can be easily changed with a `data-color` attribute.
 
 ```html
