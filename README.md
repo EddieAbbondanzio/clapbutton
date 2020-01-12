@@ -89,3 +89,7 @@ If we wanted to clap 12 times for google.com, we would send a POST request to `h
   "claps": 12
 }
 ```
+
+## Resources
+
+The clap icon was created by Chathura Kudahetti, LK and is available from: https://thenounproject.com/search/?q=clap&i=1471176
