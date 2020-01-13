@@ -69,11 +69,11 @@ Your API will just need to support two endpoints: one to get clap counts, and on
 
 ### `GET /clap` - Get Clap Count
 
-GET endpoint that accepts a query string parameter of `page` that contains a URI encoded URL. Your backend should then be able to lookup the page via it's URL and return back the clap count as the body.
+GET endpoint that accepts a query string parameter of `url` that contains a URI encoded URL. Your backend should then be able to lookup the page via it's URL and return back the clap count as the body.
 
 #### Example
 
-To get the clap count for google.com, a request would be routed to `https://clapbutton.com/api/clap?page=google.com`.
+To get the clap count for google.com, a request would be routed to `https://clapbutton.com/api/clap?url=google.com`.
 
 ### `POST /clap` - Clap For Page
 
