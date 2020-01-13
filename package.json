@@ -18,6 +18,12 @@
     "url": "https://github.com/EddieAbbondanzio/clapbutton/issues"
   },
   "homepage": "https://github.com/EddieAbbondanzio/clapbutton#readme",
+  "keywords": [
+    "clap",
+    "button",
+    "applause",
+    "claps"
+  ],
   "devDependencies": {
     "css-loader": "^3.3.0",
     "file-loader": "^5.0.2",
