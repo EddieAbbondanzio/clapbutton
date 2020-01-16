@@ -27,7 +27,7 @@ import '../scss/styles.scss';
       }
 
       if (backendUrl == null) {
-        backendUrl = 'api.clapbutton.com';
+        backendUrl = 'https://api.clapbutton.com';
       }
 
       // Validate input
