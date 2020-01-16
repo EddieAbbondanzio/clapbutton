@@ -23,7 +23,7 @@ export class Service {
       return 0;
     }
 
-    return (await this.http.get('/clap', { name: 'url', value: url })).response;
+    return await this.http.get('/clap', { name: 'url', value: url });
   }
 
   /**

@@ -51,6 +51,7 @@ export class Http {
       };
 
       if (body != null) {
+        xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify(body));
       } else {
         xhr.send();
