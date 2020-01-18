@@ -1,5 +1,5 @@
 /**
- * Async based HTTP Client for making HTTP requests
+ * Async based HTTP Client for making HTTP requests that contain a JSON encoded body.
  */
 export class Http {
   /**

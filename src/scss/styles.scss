@@ -61,6 +61,7 @@
   align-items: center;
 
   .clap-icon {
+    box-sizing: content-box;
     padding: 12px;
     height: 34px !important;
     width: 34px !important;
